@@ -14,6 +14,9 @@ public class Gaulois {
 		return nom;
 	}
 	
+	private void setEffetPotion(int nouveauEffetPotion) {
+		effetPotion = nouveauEffetPotion;
+	}
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "« " + texte + "»");
 	}
@@ -31,16 +34,22 @@ public class Gaulois {
 		return "Gaulois [nom=" + nom + ", force=" + force
 		+ ", effetPotion=" + effetPotion + "]";
 	}
-		
+	public void boirePotion(int forcePotion) {
+		setEffetPotion(forcePotion);
+		parler("Merci Druide, je sens que ma force est "+ effetPotion + " fois décuplée.");
+	}
 	public static void main(String[] args) {
 		//TODO créer un main permettant de tester la classe Gaulois
 		Gaulois asterix = new Gaulois("Astérix", 8);
 		Romain cesar = new Romain("César", 2);
+		Druide panoramix = new Druide("Panoramix", 5, 10);
 		System.out.println(asterix.getNom());
 		System.out.println(asterix);
 		System.out.println(asterix.prendreParole());
 		asterix.parler("Yo la famille");
 		asterix.frapper(cesar);
+		int forcePotion = panoramix.preparerPotion();
+		asterix.boirePotion(forcePotion);
 	}
 
 }
