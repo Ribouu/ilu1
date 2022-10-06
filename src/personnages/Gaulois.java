@@ -17,6 +17,7 @@ public class Gaulois {
 	private void setEffetPotion(int nouveauEffetPotion) {
 		effetPotion = nouveauEffetPotion;
 	}
+	
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "« " + texte + "»");
 	}
@@ -38,6 +39,7 @@ public class Gaulois {
 		setEffetPotion(forcePotion);
 		parler("Merci Druide, je sens que ma force est "+ effetPotion + " fois décuplée.");
 	}
+	
 	public static void main(String[] args) {
 		//TODO créer un main permettant de tester la classe Gaulois
 		Gaulois asterix = new Gaulois("Astérix", 8);

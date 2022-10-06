@@ -14,7 +14,7 @@ public class Romain {
 	}
 	
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "« " + texte + "»");
+		System.out.println(prendreParole() + "« " + texte + " »");
 	}
 	
 	private String prendreParole() {
@@ -22,19 +22,31 @@ public class Romain {
 	}
 	
 	public void recevoirCoup(int forceCoup) {
+		assert forceToujoursPositive();
+		int forceAvantCoup = force;
 		force -= forceCoup;
 		if (force > 0) {
-			parler("Aïe");
+			parler("Aïe !");
 		} else {
 			parler("J'abandonne...");
 		}
+		assert force < forceAvantCoup;
 	}
 		
+	private boolean forceToujoursPositive() {
+		return (force >= 0);
+	}
+		
+	private boolean isInvariantSatified() {
+		return forceToujoursPositive();
+	}
+	
 	public static void main(String[] args) {
-		Romain cesar = new Romain("César", 2);
+		Romain cesar = new Romain("César", 6);
+		assert cesar.isInvariantSatified();
 		System.out.println(cesar.prendreParole());
 		cesar.parler("Bonjour mon peup... Astérix non !!");
-		cesar.recevoirCoup(8);
+		cesar.recevoirCoup(4);
 	}
 	
 }

@@ -45,7 +45,7 @@ public class Village {
 		village.setChef(abraracourcix);
 		Gaulois asterix = new Gaulois("Astérix", 8);
 		village.ajouterHabitant(asterix);
-		Gaulois obelix = new Gaulois("Obélix", 20);
+		Gaulois obelix = new Gaulois("Obélix", 25);
 		village.ajouterHabitant(obelix);
 		// Gaulois gaulois = village.trouverHabitant(1);
 		// System.out.println(gaulois);
