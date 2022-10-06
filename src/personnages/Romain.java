@@ -65,20 +65,18 @@ public class Romain {
 		}
 	}
 	public static void main(String[] args) {
-		Romain cesar = new Romain("César", 6);
-		assert cesar.isInvariantSatified();
-		System.out.println(cesar.prendreParole());
-		cesar.parler("Bonjour mon peup... Astérix non !!");
-		cesar.recevoirCoup(4);
+		Romain minus = new Romain("Minus", 6);
+		assert minus.isInvariantSatified();
+		System.out.println(minus.prendreParole());
+		minus.parler("Bonjour tout le mo... Astérix non !!");
+		minus.recevoirCoup(4);
 		Equipement casque = Equipement.CASQUE;
 		Equipement bouclier = Equipement.BOUCLIER;
 		System.out.println(casque);
 		System.out.println(bouclier);
-		cesar.sEquiper(casque);
-		cesar.sEquiper(casque);
-		cesar.sEquiper(bouclier);
-		cesar.sEquiper(casque);
-		
+		minus.sEquiper(casque);
+		minus.sEquiper(casque);
+		minus.sEquiper(bouclier);
+		minus.sEquiper(casque);
 	}
-	
 }
