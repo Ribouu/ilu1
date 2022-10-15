@@ -53,6 +53,5 @@ public class Gaulois {
 		int forcePotion = panoramix.preparerPotion();
 		asterix.boirePotion(forcePotion);
 	}
-
 }
 

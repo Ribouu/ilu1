@@ -50,11 +50,11 @@ public class Druide {
 			parler(" Non, Obélix !... Tu n’auras pas de potion "
 					+ "magique ! ");
 		} else {
-			if (potion == 0) {
-				forcePotion = preparerPotion();
-			} else {
+//			if (potion == 0) {
+//				forcePotion = preparerPotion();
+//			} else {
 				forcePotion = potion;
-			}
+//			}
 		
 		gaulois.boirePotion(forcePotion);
 		}
@@ -68,4 +68,3 @@ public class Druide {
 		panoramix.booster(obelix);
 	}
 }
-
