@@ -5,6 +5,7 @@ public class Gaulois {
 	private int force;
 	private int effetPotion = 1;
 	private int nbTrophees;
+	Equipement[] trophees = new Equipement[100];
 	
 	public Gaulois(String nom, int force) {
 		this.nom = nom;
@@ -37,10 +38,9 @@ public class Gaulois {
 //	}
 	
 	public void frapper(Romain romain) {
-		Equipement[] trophees;
 		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
 		trophees = romain.recevoirCoup((force / 3) * effetPotion);
-		for (int i = 0; trophees != null && i < trophees.length; i++,nbTrophees++) {
+		for (int i = 0; trophees != null && i < trophees.length; i++, nbTrophees++) {
 			trophees[nbTrophees] = trophees[i];
 		}
 	}
@@ -55,8 +55,21 @@ public class Gaulois {
 		parler("Merci Druide, je sens que ma force est "+ effetPotion + " fois décuplée.");
 	}
 	
+	public void faireUneDonation(Musee musee) {
+		if (nbTrophees!=0) {
+			String texte = "Je donne au musee tous mes trophees :\n";
+			for (int i=0; i<nbTrophees; i++) {
+				texte += "- " + this.trophees[i] + "\n";
+				Trophee trophee = new Trophee(this, trophees[i]);
+				musee.donnerTrophees(this, trophee);
+			}
+		System.out.println(texte);
+		} else {
+			System.out.println("Je n'ai pas de trophées à donner.");
+		}
+		
+	}
 	public static void main(String[] args) {
-		//TODO créer un main permettant de tester la classe Gaulois
 		Gaulois asterix = new Gaulois("Astérix", 8);
 		Romain cesar = new Romain("César", 2);
 		Druide panoramix = new Druide("Panoramix", 5, 10);
@@ -64,9 +77,19 @@ public class Gaulois {
 		System.out.println(asterix);
 		System.out.println(asterix.prendreParole());
 		asterix.parler("Yo la famille");
-		asterix.frapper(cesar);
 		int forcePotion = panoramix.preparerPotion();
 		asterix.boirePotion(forcePotion);
+		Equipement casque = Equipement.CASQUE;
+		Equipement bouclier = Equipement.BOUCLIER;
+		cesar.sEquiper(casque);
+		cesar.sEquiper(bouclier);
+		asterix.frapper(cesar);
+		asterix.frapper(cesar);
+		asterix.frapper(cesar);
+		asterix.frapper(cesar);
+		Musee musee = new Musee();
+		asterix.faireUneDonation(musee);
+		System.out.println(musee.extraireInstructionsCaml());
 	}
 }
 

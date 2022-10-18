@@ -1,6 +1,7 @@
 package histoire;
 
 import personnages.Druide;
+import personnages.Equipement;
 import personnages.Gaulois;
 import personnages.Romain;
 public class Scenario {
@@ -18,6 +19,13 @@ public class Scenario {
 		panoramix.booster(asterix);
 		asterix.parler("Bonjour");
 		minus.parler("UN GAU... UN GAUGAU...");
+		Equipement casque = Equipement.CASQUE;
+		Equipement bouclier = Equipement.BOUCLIER;
+		minus.sEquiper(casque);
+		minus.sEquiper(casque);
+		minus.sEquiper(bouclier);
+		asterix.frapper(minus);
+		asterix.frapper(minus);
 		asterix.frapper(minus);
 		asterix.frapper(minus);
 		asterix.frapper(minus);
