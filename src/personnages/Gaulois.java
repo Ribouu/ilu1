@@ -4,7 +4,7 @@ public class Gaulois {
 	private String nom;
 	private int force;
 	private int effetPotion = 1;
-	private int nbTrophees;
+	private int nbTrophees = 0;
 	Equipement[] trophees = new Equipement[100];
 	
 	public Gaulois(String nom, int force) {
@@ -39,9 +39,9 @@ public class Gaulois {
 	
 	public void frapper(Romain romain) {
 		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
-		trophees = romain.recevoirCoup((force / 3) * effetPotion);
-		for (int i = 0; trophees != null && i < trophees.length; i++, nbTrophees++) {
-			trophees[nbTrophees] = trophees[i];
+		Equipement[] tropheesRomain = romain.recevoirCoup((force / 3) * effetPotion);
+		for (int i = 0; tropheesRomain != null && i < tropheesRomain.length; i++, nbTrophees++) {
+			this.trophees[nbTrophees] = tropheesRomain[i];
 		}
 	}
 	
@@ -56,11 +56,11 @@ public class Gaulois {
 	}
 	
 	public void faireUneDonation(Musee musee) {
-		if (nbTrophees!=0) {
+		if (nbTrophees!=0 && this.trophees!=null) {
 			String texte = "Je donne au musee tous mes trophees :\n";
 			for (int i=0; i<nbTrophees; i++) {
 				texte += "- " + this.trophees[i] + "\n";
-				Trophee trophee = new Trophee(this, trophees[i]);
+				Trophee trophee = new Trophee(this, this.trophees[i]);
 				musee.donnerTrophees(this, trophee);
 			}
 		System.out.println(texte);
@@ -72,6 +72,7 @@ public class Gaulois {
 	public static void main(String[] args) {
 		Gaulois asterix = new Gaulois("Astérix", 8);
 		Romain cesar = new Romain("César", 2);
+		Romain minus = new Romain("Minus", 40);
 		Druide panoramix = new Druide("Panoramix", 5, 10);
 		System.out.println(asterix.getNom());
 		System.out.println(asterix);
@@ -83,10 +84,12 @@ public class Gaulois {
 		Equipement bouclier = Equipement.BOUCLIER;
 		cesar.sEquiper(casque);
 		cesar.sEquiper(bouclier);
+		minus.sEquiper(casque);
+		minus.sEquiper(bouclier);
 		asterix.frapper(cesar);
-		asterix.frapper(cesar);
-		asterix.frapper(cesar);
-		asterix.frapper(cesar);
+		asterix.frapper(minus);
+		asterix.frapper(minus);
+		asterix.frapper(minus);
 		Musee musee = new Musee();
 		asterix.faireUneDonation(musee);
 		System.out.println(musee.extraireInstructionsCaml());
